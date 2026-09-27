@@ -1,0 +1,19 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  pr-check:
+    name: pr-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify repository layout
+        run: |
+          test -f README.md
+          test -f docs/operations.md
+          test -f src/sample-output.ts
+          echo "PR check passed: required files are present."
